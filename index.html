@@ -1,0 +1,43 @@
+<html lang="en" >
+<head>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  <link rel="stylesheet" src="assets/style/style.css">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+</head>
+
+
+<body ng-app="BlankApp" ng-cloak>
+
+
+
+
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript">
+    /**
+     * You must include the dependency on 'ngMaterial'
+     */
+    angular.module('BlankApp', ['ngMaterial']);
+  </script>
+  <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>User</label>
+            <input ng-model="user.firstName">
+              </md-input-container>
+        <md-input-container class="md-block" flex-gt-sm>
+
+          <label> Password</label>
+          <input ng-model="user.password">
+        </md-input-container>
+      </section>
+          <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+             <md-button>Login</md-button>
+             <md-button>Register</md-button>
+           </section>
+</body>
+</html>
