@@ -4,7 +4,12 @@ angular.module('comics')
       .when('/', {
         template: "<a href='#/register'>Register</a>"
       })
-      .when('/register', {
-        template: "<a href='#/'>Home</a>"
-      });
+      .when('/login',{
+        templateUrl:'component/login/login.html'
+      }).when('/404',{
+        templateUrl:'shared/404.html'
+      }).otherwise({
+      redirectTo:'/404'
+        }
+      );
   });

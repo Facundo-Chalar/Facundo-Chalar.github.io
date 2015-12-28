@@ -1,30 +1,46 @@
 <html lang="en" >
+<base href="/">
 <head>
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
   <link rel="stylesheet" href="assets/style/style.css">
 
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+  <script src="app/app.module.js"></script>
+  <script src="app/app.route.js"></script>
+  <script src="component/register/registerController.js"></script>
 </head>
 
-<body ng-app="BlankApp" ng-cloak ng-style="{'background-image':'url(/assets/img/LoginBackground.jpg)','background-position':'center','background-repeat':'no-repeat'}">
+<body ng-app="comics" ng-cloak ng-view ng-style="{'background-image':'url(/assets/img/LoginBackground.jpg)','background-position':'center','background-repeat':'no-repeat'}">
 
 
   <script type="text/javascript">
 
-    angular.module('BlankApp', ['ngMaterial']);
-
-
-
-
-        angular.module('BlankApp', ['ngMaterial'])
-        .controller('AppCtrl', function($scope, $mdDialog, $mdMedia) {
+        angular.module('comics')
+        .controller('AppCtrl', function($scope, $mdDialog, $mdMedia,$localStorage,$filter) {
           $scope.status = '  ';
+          $scope.userList=[];
+
+          $scope.$storage=$localStorage;
           $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+
+          $scope.checkLogin=function(user){
+            alert('login checked');
+          };
+          $scope.getUsers=function(){
+            $scope.allUsers=angular.isUndefined($localStorage.userList)?[]:$localStorage.userList;
+             return angular.fromJson($scope.allUsers);
+          };
+          $scope.findUser=function(userName){
+            var filtered = $filter('filter')($scope.getUsers(), { nickName: userName });
+            var user = filtered.length ? filtered[0] : null;
+            return user;
+          }
 
 
           $scope.showAdvanced = function(ev) {
@@ -37,10 +53,21 @@
               clickOutsideToClose:true,
               fullscreen: useFullScreen
             })
-            .then(function(answer) {
-              $scope.status = 'You said the information was "' + answer + '".';
+            .then(function(user) {
+            //  $localStorage.userList=['assa','sdasd','dfsfds'];
+                $scope.userList=angular.fromJson($localStorage.userList);
+                if(angular.isUndefined($scope.userList)){
+                    $scope.newList=[];
+                    $scope.newList.push(user);
+                    $localStorage.userList=angular.toJson($scope.newList);
+                }else{
+                  $scope.userList.push(user);
+                  $localStorage.userList=angular.toJson($scope.userList);
+                }
             }, function() {
               $scope.status = 'You cancelled the dialog.';
+              var resultado=$scope.findUser('2134');
+              alert(resultado);
             });
             $scope.$watch(function() {
               return $mdMedia('xs') || $mdMedia('sm');
@@ -57,38 +84,17 @@
           $scope.cancel = function() {
             $mdDialog.cancel();
           };
-          $scope.answer = function(answer) {
-            $mdDialog.hide(answer);
+          $scope.registerUser = function(user) {
+            $mdDialog.hide(user);
           };
         }
 
-        angular.module('BlankApp')
+        angular.module('comics')
           .config(function($mdThemingProvider) {
               $mdThemingProvider.theme('default')
               .primaryPalette('blue')
               .accentPalette('red');
             });
   </script>
-
-    <div layout-align="center center" class="login-form" ng-controller="AppCtrl" ng-cloak>
-        <section layout="column"   layout-wrap>
-          <md-input-container>
-            <label>User</label>
-             <md-icon md-svg-src="assets/icons/user-icon.svg" class="name"></md-icon>
-            <input  ng-model="user.firstName">
-          </md-input-container>
-          <md-input-container>
-            <label> Password</label>
-            <md-icon md-svg-src="assets/icons/password-icon.svg" class="name"></md-icon>
-            <input type="password" ng-model="user.password">
-          </md-input-container>
-        </section>
-
-        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-             <md-button class="md-raised md-primary">Login</md-button>
-             <md-button class="md-raised md-accent" ng-click="showAdvanced($event)">Register</md-button>
-        </section>
-      </div>
-</div>
 </body>
 </html>
