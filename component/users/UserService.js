@@ -15,13 +15,17 @@ angular.module('comics').service('comics').service('UserService',function($local
             }
         };
 
+        this.userExists=function(username){
+          return this.findUser(username)!==null?true:false;
+        };
+
        this.getAll=function(){
           this.allUsers=angular.isUndefined($localStorage.userList)?[]:$localStorage.userList;
           return angular.fromJson(this.allUsers);
         };
 
         this.findUser=function(userName){
-          var filtered = $filter('filter')(this.getAll(), { nickName: userName });
+          var filtered = $filter('filter')(this.getAll(), { nickName: userName },true);
           var user = filtered.length ? filtered[0] : null;
           return user;
         };

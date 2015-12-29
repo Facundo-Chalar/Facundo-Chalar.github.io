@@ -6,6 +6,8 @@ angular.module('comics')
   $scope.$storage=$localStorage;
 
 
+  
+
   $scope.checkLogin=function(user){
     UserService.checkLogin(user.nickname,user.password);
   };
@@ -26,7 +28,7 @@ angular.module('comics')
     }, function() {
       //Register Cancelled
       //Todo volver a login si esta por /register o cerrar dialog si esta en Pop-Up
-    });    
+    });
   };
 
 });
