@@ -1,9 +1,9 @@
-<div layout-align="center center" class="login-form" ng-controller="AppCtrl" ng-cloak>
+<div layout-align="center center" class="login-form" ng-controller="loginController" ng-cloak>
     <section layout="column"   layout-wrap>
       <md-input-container>
         <label>User</label>
          <md-icon md-svg-src="assets/icons/user-icon.svg" class="name"></md-icon>
-        <input  ng-model="user.firstName">
+        <input  ng-model="user.nickname">
       </md-input-container>
       <md-input-container>
         <label> Password</label>
@@ -14,7 +14,7 @@
 
     <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
          <md-button class="md-raised md-accent" ng-click="showAdvanced($event)">Register</md-button>
-         <md-button class="md-raised md-primary" ng-click="checkLogin()">Login</md-button>
+         <md-button class="md-raised md-primary" ng-click="checkLogin(user)">Login</md-button>
     </section>
 
   </div>

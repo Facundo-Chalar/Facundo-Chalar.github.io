@@ -11,8 +11,11 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+
   <script src="app/app.module.js"></script>
   <script src="app/app.route.js"></script>
+  <script src="component/users/UserService.js"></script>
+  <script src="component/login/loginController.js"></script>
   <script src="component/register/registerController.js"></script>
 </head>
 
@@ -20,74 +23,6 @@
 
 
   <script type="text/javascript">
-
-        angular.module('comics')
-        .controller('AppCtrl', function($scope, $mdDialog, $mdMedia,$localStorage,$filter) {
-          $scope.status = '  ';
-          $scope.userList=[];
-
-          $scope.$storage=$localStorage;
-          $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
-
-          $scope.checkLogin=function(user){
-            alert('login checked');
-          };
-          $scope.getUsers=function(){
-            $scope.allUsers=angular.isUndefined($localStorage.userList)?[]:$localStorage.userList;
-             return angular.fromJson($scope.allUsers);
-          };
-          $scope.findUser=function(userName){
-            var filtered = $filter('filter')($scope.getUsers(), { nickName: userName });
-            var user = filtered.length ? filtered[0] : null;
-            return user;
-          }
-
-
-          $scope.showAdvanced = function(ev) {
-            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-            $mdDialog.show({
-              controller: DialogController,
-              templateUrl: '/component/register/register-dialog.html',
-              parent: angular.element(document.body),
-              targetEvent: ev,
-              clickOutsideToClose:true,
-              fullscreen: useFullScreen
-            })
-            .then(function(user) {
-            //  $localStorage.userList=['assa','sdasd','dfsfds'];
-                $scope.userList=angular.fromJson($localStorage.userList);
-                if(angular.isUndefined($scope.userList)){
-                    $scope.newList=[];
-                    $scope.newList.push(user);
-                    $localStorage.userList=angular.toJson($scope.newList);
-                }else{
-                  $scope.userList.push(user);
-                  $localStorage.userList=angular.toJson($scope.userList);
-                }
-            }, function() {
-              $scope.status = 'You cancelled the dialog.';
-              var resultado=$scope.findUser('2134');
-              alert(resultado);
-            });
-            $scope.$watch(function() {
-              return $mdMedia('xs') || $mdMedia('sm');
-            }, function(wantsFullScreen) {
-              $scope.customFullscreen = (wantsFullScreen === true);
-            });
-          };
-
-        });
-        function DialogController($scope, $mdDialog) {
-          $scope.hide = function() {
-            $mdDialog.hide();
-          };
-          $scope.cancel = function() {
-            $mdDialog.cancel();
-          };
-          $scope.registerUser = function(user) {
-            $mdDialog.hide(user);
-          };
-        }
 
         angular.module('comics')
           .config(function($mdThemingProvider) {

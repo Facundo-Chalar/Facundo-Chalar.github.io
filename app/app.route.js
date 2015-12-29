@@ -2,7 +2,10 @@ angular.module('comics')
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        template: "<a href='#/register'>Register</a>"
+        templateUrl:'component/login/login.html'
+      })
+      .when('/register',{
+        templateUrl:'component/register/register-dialog.html'
       })
       .when('/login',{
         templateUrl:'component/login/login.html'
