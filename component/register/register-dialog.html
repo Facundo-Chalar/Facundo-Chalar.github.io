@@ -1,7 +1,5 @@
 <div layout-align="center center" class="login-form" ng-controller="registerController">
-
-
-  <form name="registerForm" >
+  <form name="registerForm" ng-submit="registerUser(user)">
     <section layout="column"   layout-wrap>
 
         <md-input-container>
@@ -9,18 +7,16 @@
              <md-icon md-svg-src="assets/icons/user-icon.svg" class="name"></md-icon>
             <input  ng-model="user.nickName" ng-required=true name="nickname" check-user ng-pattern='/^[a-zA-Z0-9]*$/'>
             <div ng-messages="registerForm.nickname.$error" multiple md-auto-hide="false" >
-					<div ng-message="pattern">
-						User should be alphanumeric without special characters
-					</div>
-                     <div ng-message="existentuser">
-                      User already exists
-                     </div>
-                     <div ng-message="required">
-                      User required
-                     </div>
+					         <div ng-message="pattern">
+						            User should be alphanumeric without special characters
+					         </div>
+                   <div ng-message="existentuser">
+                        User already exists
+                   </div>
+                   <div ng-message="required">
+                        User required
+                   </div>
             </div>
-
-
         </md-input-container>
 
         <md-input-container>
@@ -35,7 +31,7 @@
               <div ng-message="minlength">
                     Password should contain at least 7 characters
               </div>
-			   <div ng-message="pattern">
+			        <div ng-message="pattern">
                     Password should be alphanumeric without special characters
               </div>
           </div>
@@ -52,7 +48,7 @@
               </div>
           </div>
         </md-input-container>
-        
+
         <md-input-container>
           <label> First Name</label>
           <md-icon md-svg-src="assets/icons/name-icon.svg" class="name"></md-icon>
@@ -72,14 +68,17 @@
           <div ng-messages="registerForm.email.$error" multiple md-auto-hide="false">
             <div ng-message="pattern">
                     Mail format should be: someone@example.com
-              </div>
+            </div>
+            <div ng-message="required">
+                    Email required
+            </div>
           </div>
         </md-input-container>
     </section>
-</form>
 
-      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+  <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
              <md-button class="md-raised md-primary" ng-click="cancel()">Cancel</md-button>
-             <md-button class="md-raised md-accent" ng-disabled="registerForm.$invalid" ng-click="registerUser(user)">Register</md-button>
-      </section>
+             <md-button type="submit" class="md-raised md-accent" ng-disabled="registerForm.$invalid">Register</md-button>
+  </section>
+  </form>
 </div>

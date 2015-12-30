@@ -1,4 +1,5 @@
 <div layout-align="center center" class="login-form" ng-controller="loginController" ng-cloak>
+  <form ng-submit="checkLogin(user)">
     <section layout="column"   layout-wrap>
       <md-input-container>
         <label>User</label>
@@ -14,7 +15,7 @@
 
     <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
          <md-button class="md-raised md-accent" ng-click="showAdvanced($event)">Register</md-button>
-         <md-button class="md-raised md-primary" ng-click="checkLogin(user)">Login</md-button>
+         <md-button type="submit" class="md-raised md-primary" >Login</md-button>
     </section>
-
+</form>
   </div>

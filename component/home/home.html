@@ -1,0 +1,45 @@
+
+<div ng-style="{'background-color':'dodgerblue','height':'100%'}" layout="column" layout-fill>
+<header >
+       <md-toolbar class='md-tall' ng-style="{'background-color':'grey'}">
+         <div class="md-toolbar-tools">
+             <h1>HEADER</h1>
+             <span flex></span>
+         </div>
+       </md-toolbar>
+   </header>
+   <section layout="row" flex>
+   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="true">
+     <md-toolbar>
+       <h1 class="md-toolbar-tools"> SideBar for filters</h1>
+       <md-button> Click for filters</md-button>
+     </md-toolbar>
+     <md-content layout-padding>
+         <p hide-md show-gt-md>
+        filter x
+       </p>
+     </md-content>
+   </md-sidenav>
+   <md-content flex layout-padding>
+     <div layout="column" layout-fill layout-align="top center">
+        <p>
+          Content
+        </p>
+        <p>
+          Content 2
+        <p>
+     </div>
+     <div flex></div>
+   </md-content>
+ </section>
+
+ <footer ng-style="{'background-color':'dodgerblue'}">
+       <div >
+          <a href="/#"> <md-icon md-svg-src="assets/icons/facebook.svg">  </md-icon></a>│
+          <a href="/#"> <md-icon md-svg-src="assets/icons/twitter.svg">   </md-icon></a>│
+          <a href="/#"> <md-icon md-svg-src="assets/icons/googleplus.svg"></md-icon></a>│
+          <a href="/#"> Sitemap    </a> │
+          <a href="/#"> Disclaimer </a> │
+       </div>
+ </footer>
+</div>

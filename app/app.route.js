@@ -2,7 +2,7 @@ angular.module('comics')
   .config(function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl:'component/login/login.html'
+        templateUrl:'component/home/home.html'
       })
       .when('/register',{
         templateUrl:'component/register/register-dialog.html'

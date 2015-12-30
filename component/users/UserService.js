@@ -1,4 +1,4 @@
-angular.module('comics').service('comics').service('UserService',function($localStorage,$filter,$cookies,AuthenticationService,SessionService){
+angular.module('comics').service('comics').service('UserService',function($localStorage,$filter,$cookies,AuthenticationService,SessionService,$location){
 		
         this.userList=[];
 
@@ -40,6 +40,7 @@ angular.module('comics').service('comics').service('UserService',function($local
 				expired.setDate(today.getDate() + 1); 
 				$cookies.put('user', user.nickName, {expires : expired });
 				AuthenticationService.login(user);
+				$location.url('/');
               } else {
                 response = { success: false, message: 'Username or password is incorrect' };
               }
