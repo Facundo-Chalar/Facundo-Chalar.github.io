@@ -1,1 +1,1 @@
-angular.module('comics', ['ngRoute','ngMaterial','ngMessages','ngStorage']);
+angular.module('comics', ['ngRoute','ngMaterial','ngMessages','ngStorage','ngCookies']);

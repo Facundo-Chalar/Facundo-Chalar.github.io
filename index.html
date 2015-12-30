@@ -11,6 +11,8 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
+ 
 
   <script src="app/app.module.js"></script>
   <script src="app/app.route.js"></script>
@@ -20,6 +22,53 @@
   <script src="shared/directives/passwordConfirm.js">
   </script>
 
+  <script>
+  var app=angular.module('comics');
+  app.factory('RoleService', function ($http) {
+
+  'use strict';
+
+  var adminRoles = ['admin', 'editor'];
+  var otherRoles = ['user'];
+
+  return {
+    validateRoleAdmin: function (currentUser) {
+      return currentUser ? _.contains(adminRoles, currentUser.role) : false;
+    },
+
+    validateRoleOther: function (currentUser) {
+      return currentUser ? _.contains(otherRoles, currentUser.role) : false;
+    }
+  };
+});
+
+app.factory('AuthenticationService', function ($http, SessionService) {
+
+  'use strict';
+
+  return {
+
+    login: function (user) {
+      // this method could be used to call the API and set the user instead of taking it in the function params
+      SessionService.currentUser = user;
+	  alert('User Logged:'+SessionService.currentUser.nickName);
+    },
+
+    isLoggedIn: function () {
+      return SessionService.currentUser !== null;
+    }
+  };
+});
+
+app.factory('SessionService', function () {
+
+  'use strict';
+
+  return {
+    currentUser: null
+  };
+});
+  </script>
 
 </head>
 

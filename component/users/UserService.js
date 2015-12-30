@@ -1,5 +1,5 @@
-angular.module('comics').service('comics').service('UserService',function($localStorage,$filter){
-
+angular.module('comics').service('comics').service('UserService',function($localStorage,$filter,$cookies,AuthenticationService,SessionService){
+		
         this.userList=[];
 
         this.addUser=function(user){
@@ -35,10 +35,23 @@ angular.module('comics').service('comics').service('UserService',function($local
 
               if (user !== null && user.password === password) {
                 response = { success: true,message:'Login Ok' };
+				var today = new Date();
+				var expired = new Date(today);
+				expired.setDate(today.getDate() + 1); 
+				$cookies.put('user', user.nickName, {expires : expired });
+				AuthenticationService.login(user);
               } else {
                 response = { success: false, message: 'Username or password is incorrect' };
               }
               alert(response.message);
             // callback(response);
         };
+		
+		
+		
+		this.loginAdmin = function() {
+      // this should be replaced with a call to your API for user verification (or you could also do it in the service)    
+		AuthenticationService.login({name: 'Admin', role: 'admin'});
+    };
+		
 });

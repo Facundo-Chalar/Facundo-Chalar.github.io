@@ -24,7 +24,7 @@
           <label> Password</label>
           <md-icon md-svg-src="assets/icons/password-icon.svg" class="name" ></md-icon>
 
-          <input  type="password" name="password" placeholder="password..." required ng-model="password" ng-minlength=7>
+          <input  type="password" name="password" required ng-model="user.password" ng-minlength=7>
             <div ng-messages="registerForm.password.$error" multiple md-auto-hide="false">
               <div ng-message="required">
                     Password required
@@ -38,7 +38,7 @@
         <md-input-container>
           <label>Repeat Password</label>
           <md-icon md-svg-src="assets/icons/password-icon.svg" class="name" ></md-icon>
-           <input type="password" name="passwordConf" required ng-model="passwordConfirmation" password-confirm match-target="password">
+           <input type="password" name="passwordConf" required ng-model="passwordConfirmation" password-confirm match-target="user.password">
 
           <div ng-messages="registerForm.passwordConf.$error" multiple md-auto-hide="false">
             <div ng-message="match">
