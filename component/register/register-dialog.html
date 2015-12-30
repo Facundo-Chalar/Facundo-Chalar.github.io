@@ -7,8 +7,11 @@
         <md-input-container>
             <label>User</label>
              <md-icon md-svg-src="assets/icons/user-icon.svg" class="name"></md-icon>
-            <input  ng-model="user.nickName" ng-required=true name="nickname" check-user>
+            <input  ng-model="user.nickName" ng-required=true name="nickname" check-user ng-pattern='/^[a-zA-Z0-9]*$/'>
             <div ng-messages="registerForm.nickname.$error" multiple md-auto-hide="false" >
+					<div ng-message="pattern">
+						User should be alphanumeric without special characters
+					</div>
                      <div ng-message="existentuser">
                       User already exists
                      </div>
