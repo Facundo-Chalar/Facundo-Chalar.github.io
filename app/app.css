@@ -1,0 +1,34 @@
+body{
+  padding: 10px;
+  background-color: white;  
+}
+
+.addTaskButton{
+  float:right;
+}
+
+.taskFormContainer{
+  display: flex;
+  max-width: 860px;
+  margin: auto;
+  width: 50%;
+}
+.flex{
+  display: flex;
+}
+
+.taskFormLabel{
+  vertical-align: sub !important;
+}
+
+.taskLate{
+  background-color: lightpink;
+}
+
+.taskCompleted{
+  background-color: lightgreen;
+}
+
+#createTaskTitle{
+  text-align: center;
+}
